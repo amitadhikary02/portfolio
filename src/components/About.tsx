@@ -83,7 +83,7 @@ const About: React.FC = () => {
   };
 
   return (
-    <section id="about" className="py-16 sm:py-20 lg:py-32 relative">
+    <section id="about" className="py-12 sm:py-16 lg:py-24 relative">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -104,21 +104,28 @@ const About: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-8 sm:mb-12"
+          className="text-center mb-10 sm:mb-14 lg:mb-16"
         >
           <motion.span
             variants={itemVariants}
-            className="inline-block px-3 sm:px-4 py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold mb-3 sm:mb-4 border border-primary/20"
+            className="inline-block px-4 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 text-primary rounded-full text-sm font-semibold mb-4 border border-primary/30 hover:border-primary/60 transition-all duration-300"
           >
-            Get to know me
+            🎯 Get to know me
           </motion.span>
           
           <motion.h2
             variants={itemVariants}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6 sm:mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4"
           >
-            About <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Me</span>
+            About <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">Me</span>
           </motion.h2>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-base sm:text-lg text-text-secondary max-w-3xl mx-auto leading-relaxed"
+          >
+            Passionate developer crafting digital experiences with code
+          </motion.p>
         </motion.div>
 
         {/* Stats Container - MOVED TO TOP */}
@@ -130,9 +137,9 @@ const About: React.FC = () => {
         >
           <div className="bg-gradient-to-br from-bg-card/50 to-bg-card/30 backdrop-blur-lg border border-border-color rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl max-w-4xl mx-auto relative">
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
-              <StatItem number={55} label="Projects Completed" />
-              <StatItem number={4000} label="Problems Solved" />
-              <StatItem number={4} label="Years Learning" />
+              <StatItem number={75} label="Projects Completed" />
+              <StatItem number={4500} label="Problems Solved" />
+              <StatItem number={5} label="Years Learning" />
             </div>
 
             {/* Decorative elements */}

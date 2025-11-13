@@ -109,6 +109,9 @@ const Skills: React.FC = () => {
   const technicalSkills = [
     { name: "Python", level: 90, icon: `${process.env.PUBLIC_URL}/assets/images/TS/python.png` },
     { name: "JavaScript", level: 95, icon: `${process.env.PUBLIC_URL}/assets/images/TS/java-script.png` },
+    { name: "TypeScript", level: 85, icon: `${process.env.PUBLIC_URL}/assets/images/TS/programming.png` },
+    { name: "Java", level: 80, icon: `${process.env.PUBLIC_URL}/assets/images/TS/python.png` },
+    { name: "Data Structures & Algorithms", level: 85, icon: `${process.env.PUBLIC_URL}/assets/images/TS/programming.png` },
     { name: "Django", level: 85, icon: `${process.env.PUBLIC_URL}/assets/images/TS/django (1).png` },
     { name: "MySQL", level: 80, icon: `${process.env.PUBLIC_URL}/assets/images/TS/mysql.png` },
     { name: "MongoDB", level: 75, icon: `${process.env.PUBLIC_URL}/assets/images/TS/database-storage.png` },
@@ -147,6 +150,16 @@ const Skills: React.FC = () => {
       title: "Time Management",
       icon: `${process.env.PUBLIC_URL}/assets/images/SS/productive_2753156.png`,
       description: "Efficient prioritization and deadline management"
+    },
+    {
+      title: "Leadership",
+      icon: `${process.env.PUBLIC_URL}/assets/images/SS/partners_5371115.png`,
+      description: "Guiding teams toward common goals with confidence and vision"
+    },
+    {
+      title: "Critical Thinking",
+      icon: `${process.env.PUBLIC_URL}/assets/images/SS/problem-solving_10645621.png`,
+      description: "Analytical approach to evaluating information and making informed decisions"
     }
   ];
 
@@ -171,7 +184,7 @@ const Skills: React.FC = () => {
   };
 
   return (
-    <section id="skills" className="py-16 sm:py-20 lg:py-32 relative">
+    <section id="skills" className="py-12 sm:py-16 lg:py-24 relative">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -237,8 +250,9 @@ const Skills: React.FC = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex flex-col"
           >
-            <div className="bg-gradient-to-br from-bg-card/50 to-bg-card/30 backdrop-blur-lg border border-border-color rounded-3xl p-6 sm:p-8 shadow-2xl">
+            <div className="bg-gradient-to-br from-bg-card/50 to-bg-card/30 backdrop-blur-lg border border-border-color rounded-3xl p-6 sm:p-8 shadow-2xl h-full">
               <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-6 sm:mb-8 flex items-center">
                 <Code className="mr-2 sm:mr-3 text-primary" size={24} />
                 Technical Skills
@@ -263,8 +277,9 @@ const Skills: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-col"
           >
-            <div className="bg-gradient-to-br from-bg-card/50 to-bg-card/30 backdrop-blur-lg border border-border-color rounded-3xl p-6 sm:p-8 shadow-2xl">
+            <div className="bg-gradient-to-br from-bg-card/50 to-bg-card/30 backdrop-blur-lg border border-border-color rounded-3xl p-6 sm:p-8 shadow-2xl h-full">
               <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-6 sm:mb-8 flex items-center">
                 <Users className="mr-2 sm:mr-3 text-secondary" size={24} />
                 Soft Skills

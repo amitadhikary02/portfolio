@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Amit Adhikary</string>
-    <string name="title_activity_main">Amit Adhikary - Portfolio</string>
-    <string name="package_name">com.amitadhikary.portfolio</string>
-    <string name="custom_url_scheme">com.amitadhikary.portfolio</string>
-    <string name="app_description">Professional portfolio of Amit Adhikary, Full Stack Developer</string>
-</resources>

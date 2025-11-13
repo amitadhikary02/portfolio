@@ -170,28 +170,7 @@ const Contact: React.FC = () => {
     }
   };
 
-  const contactInfo = [
-    {
-      icon: <Mail size={24} />,
-      title: "Email",
-      value:"***@gmail.com",
-      href: "mailto:amitadhikary59684@gmail.com",
-      isPrivate: true
-    },
-    {
-      icon: <Phone size={24} />,
-      title: "Phone",
-      value: "+91 81** **9684",
-      href: "tel:+918101029684",
-      isPrivate: true
-    },
-    {
-      icon: <MapPin size={24} />,
-      title: "Location",
-      value: "Kolkata, West Bengal, India",
-      isPrivate: false
-    }
-  ];
+  const contactInfo = [];
 
   return (
     <section id="contact" className="py-12 sm:py-16 lg:py-24 relative">
@@ -264,47 +243,72 @@ const Contact: React.FC = () => {
         </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Contact Information - Left Side */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          {/* Contact Information - Left Side - Redesigned */}
           <motion.div
             initial={{ opacity: 0, x: 0 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="lg:col-span-5 order-2 lg:order-1 w-full"
+            className="lg:col-span-5 order-2 lg:order-1 w-full flex flex-col"
           >
-            <div className="space-y-6">
-              {/* Contact Info Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-4 lg:gap-6">
-                {contactInfo.map((info, index) => (
-                  <ContactInfoCard
-                    key={info.title}
-                    icon={info.icon}
-                    title={info.title}
-                    value={info.value}
-                    href={info.href}
-                    delay={0.5 + (index * 0.1)}
-                    isPrivate={info.isPrivate}
-                  />
-                ))}
-              </div>
-
-              {/* Additional Contact Message */}
+            <div className="space-y-4 flex flex-col h-full justify-between">
+              {/* Enhanced CTA Message */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="bg-gradient-to-br from-bg-card/50 to-bg-card/30 backdrop-blur-sm border border-border-color rounded-2xl p-6 relative overflow-hidden"
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur-sm border border-primary/20 rounded-2xl p-8 relative overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl" />
                 <div className="relative z-10">
-                  <h3 className="text-xl font-bold text-text-primary mb-3">
-                    Let's Create Something Amazing Together!
+                  <h3 className="text-2xl font-bold text-text-primary mb-4">
+                    Ready to Connect?
                   </h3>
-                  <p className="text-text-secondary leading-relaxed">
-                    I'm passionate about turning ideas into reality. Whether you have a specific project 
-                    in mind or just want to explore possibilities, I'm here to help you achieve your goals.
+                  <p className="text-text-secondary leading-relaxed mb-6">
+                    I'm always excited to collaborate on new projects and explore innovative solutions. 
+                    Share your ideas through the form, and let's create something extraordinary together!
                   </p>
+                  <div className="flex items-center space-x-2 text-primary font-semibold">
+                    <Send size={18} />
+                    <span>Quick Response Guaranteed</span>
+                  </div>
                 </div>
+              </motion.div>
+
+              {/* Features/Benefits */}
+              <div className="space-y-4">
+                {[
+                  { icon: "💡", title: "Creative Ideas", desc: "Fresh perspectives on your projects" }
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                    className="bg-gradient-to-br from-bg-card/50 to-bg-card/30 backdrop-blur-sm border border-border-color rounded-xl p-4 flex items-start space-x-4 hover:border-primary/50 transition-all duration-300"
+                  >
+                    <div className="text-2xl mt-1">{item.icon}</div>
+                    <div>
+                      <h4 className="font-semibold text-text-primary">{item.title}</h4>
+                      <p className="text-sm text-text-secondary">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Social/Connect Message */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="bg-gradient-to-br from-bg-card/40 to-bg-card/20 backdrop-blur-sm border border-border-color rounded-xl p-6 text-center"
+              >
+                <p className="text-text-secondary mb-4">
+                  Looking for a different way to connect?
+                </p>
+                <p className="text-sm text-text-secondary/70">
+                  Visit my social profiles or use the contact form for the fastest response
+                </p>
               </motion.div>
             </div>
           </motion.div>
@@ -316,16 +320,16 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="lg:col-span-7 order-1 lg:order-2 w-full"
           >
-            <div className="bg-gradient-to-br from-bg-card/40 to-bg-card/20 backdrop-blur-lg border border-border-color rounded-2xl p-6 lg:p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="bg-gradient-to-br from-bg-card/40 to-bg-card/20 backdrop-blur-lg border border-border-color rounded-2xl p-6 lg:p-8 h-full flex flex-col justify-center">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Name, Email, and Phone Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.7 }}
                   >
-                    <label htmlFor="name" className="block text-sm font-semibold text-text-primary mb-2">
+                    <label htmlFor="name" className="block text-sm font-semibold text-text-primary mb-1.5">
                       Your Name
                     </label>
                     <input
@@ -335,7 +339,7 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 lg:py-4 bg-bg-card/60 backdrop-blur-sm border border-border-color rounded-xl text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-2.5 bg-bg-card/60 backdrop-blur-sm border border-border-color rounded-xl text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
                       placeholder="Enter your name"
                     />
                   </motion.div>
@@ -345,7 +349,7 @@ const Contact: React.FC = () => {
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.8 }}
                   >
-                    <label htmlFor="email" className="block text-sm font-semibold text-text-primary mb-2">
+                    <label htmlFor="email" className="block text-sm font-semibold text-text-primary mb-1.5">
                       Email Address
                     </label>
                     <input
@@ -355,7 +359,7 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 lg:py-4 bg-bg-card/60 backdrop-blur-sm border border-border-color rounded-xl text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+                      className="w-full px-4 py-2.5 bg-bg-card/60 backdrop-blur-sm border border-border-color rounded-xl text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
                       placeholder="Enter your email"
                     />
                   </motion.div>
@@ -367,7 +371,7 @@ const Contact: React.FC = () => {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.9 }}
                 >
-                  <label htmlFor="phone" className="block text-sm font-semibold text-text-primary mb-2">
+                  <label htmlFor="phone" className="block text-sm font-semibold text-text-primary mb-1.5">
                     Phone Number
                   </label>
                   <input
@@ -377,7 +381,7 @@ const Contact: React.FC = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 lg:py-4 bg-bg-card/60 backdrop-blur-sm border border-border-color rounded-xl text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-2.5 bg-bg-card/60 backdrop-blur-sm border border-border-color rounded-xl text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
                     placeholder="Enter your phone number"
                   />
                 </motion.div>
@@ -388,7 +392,7 @@ const Contact: React.FC = () => {
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 1.0 }}
                 >
-                  <label htmlFor="message" className="block text-sm font-semibold text-text-primary mb-2">
+                  <label htmlFor="message" className="block text-sm font-semibold text-text-primary mb-1.5">
                     Message
                   </label>
                   <textarea
@@ -397,8 +401,8 @@ const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    rows={5}
-                    className="w-full px-4 py-3 lg:py-4 bg-bg-card/60 backdrop-blur-sm border border-border-color rounded-xl text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none"
+                    rows={3}
+                    className="w-full px-4 py-2.5 bg-bg-card/60 backdrop-blur-sm border border-border-color rounded-xl text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300 resize-none"
                     placeholder="Tell me about your project..."
                   />
                 </motion.div>

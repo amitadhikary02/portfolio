@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Sparkles } from 'lucide-react';
 
 interface SocialLinkProps {
   href: string;
@@ -18,7 +18,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, iconSrc, label, color, bg
       initial={{ 
         x: -100, 
         opacity: 0,
-        scale: 0.8
+        scale: 0.9
       }}
       animate={{ 
         x: 0, 
@@ -28,57 +28,60 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, iconSrc, label, color, bg
       exit={{ 
         x: -100, 
         opacity: 0,
-        scale: 0.8
+        scale: 0.9
       }}
       transition={{
         type: "spring",
-        stiffness: 400,
-        damping: 25,
-        delay: index * 0.1
+        stiffness: 350,
+        damping: 20,
+        delay: index * 0.08
       }}
       whileHover={{ 
-        x: 8,
+        x: 12,
         scale: 1.05
       }}
       whileTap={{ scale: 0.95 }}
-      className="mb-3 last:mb-0"
+      className="mb-2.5 last:mb-0"
     >
       <motion.a
         href={href}
         target={href.startsWith('mailto:') || href.startsWith('tel:') ? '_self' : '_blank'}
         rel="noopener noreferrer"
-        className={`group flex items-center ${bgColor} rounded-r-full pl-4 pr-6 py-3 shadow-lg hover:shadow-xl transition-all duration-300 min-w-[200px] relative overflow-hidden`}
+        className={`group relative flex items-center ${bgColor} backdrop-blur-md rounded-r-2xl pl-3 pr-5 py-2.5 shadow-lg hover:shadow-2xl transition-all duration-300 min-w-[190px] border border-white/10`}
       >
-        {/* Icon container */}
-        <div className={`w-10 h-10 ${color} rounded-full flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300 p-2`}>
+        {/* Animated gradient overlay */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 rounded-r-2xl"
+          initial={{ x: '-100%' }}
+          whileHover={{ x: '100%' }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+        />
+        
+        {/* Icon container with glow */}
+        <motion.div 
+          className={`relative w-9 h-9 ${color} rounded-xl flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300 p-2 shadow-md`}
+          whileHover={{ rotate: [0, -10, 10, 0] }}
+          transition={{ duration: 0.5 }}
+        >
           <img 
             src={iconSrc} 
             alt={label} 
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain relative z-10"
           />
-        </div>
+          {/* Icon glow effect */}
+          <div className="absolute inset-0 bg-white/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </motion.div>
         
-        {/* Label */}
-        <span className="text-white font-medium text-sm tracking-wide">
+        {/* Label with better typography */}
+        <span className="relative z-10 text-white font-semibold text-sm tracking-wide">
           {label}
         </span>
         
-        {/* Hover effect background */}
+        {/* Shine effect */}
         <motion.div
-          className="absolute inset-0 bg-white/10 rounded-r-full"
-          initial={{ scaleX: 0, transformOrigin: 'left' }}
-          whileHover={{ scaleX: 1 }}
+          className="absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-white/20 to-transparent rounded-r-2xl opacity-0 group-hover:opacity-100"
           transition={{ duration: 0.3 }}
         />
-        
-        {/* Arrow indicator */}
-        <motion.div
-          className="absolute right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          initial={{ x: -10 }}
-          whileHover={{ x: 0 }}
-        >
-          <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-        </motion.div>
       </motion.a>
     </motion.div>
   );
@@ -92,6 +95,35 @@ const SocialSidebar: React.FC = () => {
     setMounted(true);
     return () => setMounted(false);
   }, []);
+
+  // Close sidebar on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isOpen]);
+
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isOpen) {
+        const target = event.target as HTMLElement;
+        // Check if click is outside the sidebar container
+        const sidebarElement = document.getElementById('social-sidebar-container');
+        if (sidebarElement && !sidebarElement.contains(target)) {
+          setIsOpen(false);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
 
   const socialLinks = [
     {
@@ -116,7 +148,7 @@ const SocialSidebar: React.FC = () => {
       bgColor: 'bg-gradient-to-r from-green-500 to-green-400'
     },
     {
-      href: 'https://www.linkedin.com/in/amit-adhikary-4394b8167/',
+      href: 'https://www.linkedin.com/in/amitadhikary02/',
       iconSrc: '/assets/images/Contacts/linkedin.png',
       label: 'LinkedIn',
       color: 'bg-blue-600',
@@ -130,21 +162,21 @@ const SocialSidebar: React.FC = () => {
       bgColor: 'bg-gradient-to-r from-red-600 to-red-500'
     },
     {
-      href: 'https://github.com/amit59684',
+      href: 'https://github.com/amitadhikary02',
       iconSrc: '/assets/images/Contacts/github.png',
       label: 'GitHub',
       color: 'bg-gray-800',
       bgColor: 'bg-gradient-to-r from-gray-800 to-gray-700'
     },
     {
-      href: 'https://leetcode.com/u/amitadhikary/',
+      href: 'https://leetcode.com/u/amitadhikary02/',
       iconSrc: '/assets/images/Contacts/leetcode.png',
       label: 'LeetCode',
       color: 'bg-orange-500',
       bgColor: 'bg-gradient-to-r from-orange-600 to-orange-500'
     },
     {
-      href: 'https://www.hackerrank.com/profile/amit059684',
+      href: 'https://www.hackerrank.com/profile/amitadhikary02',
       iconSrc: '/assets/images/Contacts/hackerrank.png',
       label: 'HackerRank',
       color: 'bg-green-600',
@@ -158,6 +190,7 @@ const SocialSidebar: React.FC = () => {
 
   const sidebarContent = (
     <div 
+      id="social-sidebar-container"
       className="fixed left-0 top-1/2 transform -translate-y-1/2" 
       style={{ 
         zIndex: 2147483640,
@@ -169,105 +202,157 @@ const SocialSidebar: React.FC = () => {
       {/* Main container */}
       <div className="flex items-center">
         
-        {/* Social links container */}
+        {/* Social links container with glassmorphism */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, width: 0 }}
-              animate={{ opacity: 1, width: 'auto' }}
-              exit={{ opacity: 0, width: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              initial={{ opacity: 0, x: -20, width: 0 }}
+              animate={{ opacity: 1, x: 0, width: 'auto' }}
+              exit={{ opacity: 0, x: -20, width: 0 }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
               className="mr-2 overflow-hidden"
             >
-              <div className="py-2">
-                {socialLinks.map((link, index) => (
-                  <SocialLink
-                    key={link.label}
-                    href={link.href}
-                    iconSrc={link.iconSrc}
-                    label={link.label}
-                    color={link.color}
-                    bgColor={link.bgColor}
-                    index={index}
+              {/* Backdrop with blur */}
+              <div className="relative">
+                {/* Background glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 blur-xl rounded-r-3xl" />
+                
+                {/* Content container */}
+                <div className="relative bg-bg-card/40 backdrop-blur-xl border-r border-t border-b border-border-color rounded-r-3xl py-3 px-2 shadow-2xl">
+                  {/* Header badge */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.2 }}
+                    className="mb-3 px-2"
+                  >
+                    <div className="flex items-center justify-center space-x-2 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-xl py-2 px-3 border border-primary/20">
+                      <Sparkles size={14} className="text-primary" />
+                      <span className="text-xs font-bold text-text-primary">Connect With Me</span>
+                    </div>
+                  </motion.div>
+
+                  {/* Social links */}
+                  <div className="space-y-2">
+                    {socialLinks.map((link, index) => (
+                      <SocialLink
+                        key={link.label}
+                        href={link.href}
+                        iconSrc={link.iconSrc}
+                        label={link.label}
+                        color={link.color}
+                        bgColor={link.bgColor}
+                        index={index}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Footer accent */}
+                  <motion.div
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: 0.6, duration: 0.8 }}
+                    className="mt-3 h-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-full mx-2"
                   />
-                ))}
+                </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
           
-        {/* Toggle button */}
+        {/* Enhanced toggle button */}
         <motion.button
           onClick={toggleMenu}
-          className={`w-14 h-14 rounded-r-full flex items-center justify-center shadow-lg transition-all duration-300 relative overflow-hidden ${
+          className={`relative w-16 h-16 rounded-r-2xl flex items-center justify-center shadow-2xl transition-all duration-300 overflow-hidden border-r border-t border-b ${
             isOpen 
-              ? 'bg-gradient-to-r from-red-500 to-red-600' 
-              : 'bg-gradient-to-r from-cyan-500 to-purple-600'
+              ? 'bg-gradient-to-br from-red-500 via-red-600 to-red-700 border-red-400/30' 
+              : 'bg-gradient-to-br from-primary via-secondary to-primary border-primary/30'
           }`}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.08, x: 2 }}
           whileTap={{ scale: 0.95 }}
           style={{
             borderTopLeftRadius: '0',
             borderBottomLeftRadius: '0'
           }}
         >
-          {/* Background animation */}
+          {/* Animated background gradient */}
           <motion.div
-            className="absolute inset-0 bg-white/10"
-            initial={{ scaleY: 0, transformOrigin: 'bottom' }}
-            animate={{ scaleY: isOpen ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
+            className="absolute inset-0"
+            animate={{ 
+              background: isOpen 
+                ? ['linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%)',
+                   'linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #ef4444 100%)',
+                   'linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%)']
+                : ['linear-gradient(135deg, #6366f1 0%, #f59e0b 50%, #6366f1 100%)',
+                   'linear-gradient(135deg, #f59e0b 0%, #6366f1 50%, #f59e0b 100%)',
+                   'linear-gradient(135deg, #6366f1 0%, #f59e0b 50%, #6366f1 100%)']
+            }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
           />
           
-          {/* Icon with rotation */}
+          {/* Glassmorphism overlay */}
+          <div className="absolute inset-0 bg-white/5 backdrop-blur-sm" />
+          
+          {/* Icon with smooth rotation */}
           <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            animate={{ rotate: isOpen ? 90 : 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
             className="relative z-10"
           >
             {isOpen ? (
-              <X size={22} className="text-white" />
+              <X size={24} className="text-white drop-shadow-lg" strokeWidth={2.5} />
             ) : (
-              <Menu size={22} className="text-white" />
+              <Menu size={24} className="text-white drop-shadow-lg" strokeWidth={2.5} />
             )}
           </motion.div>
           
-          {/* Pulse effect */}
-          <motion.div
-            className="absolute inset-0 bg-cyan-500/30"
-            style={{
-              borderTopLeftRadius: '0',
-              borderBottomLeftRadius: '0',
-              borderRadius: '0 50% 50% 0'
-            }}
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0, 0.3, 0]
-            }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
+          {/* Continuous pulse effect */}
+          {!isOpen && (
+            <motion.div
+              className="absolute inset-0 rounded-r-2xl"
+              style={{
+                borderTopLeftRadius: '0',
+                borderBottomLeftRadius: '0'
+              }}
+              animate={{ 
+                boxShadow: [
+                  '0 0 0 0 rgba(99, 102, 241, 0.4)',
+                  '0 0 0 10px rgba(99, 102, 241, 0)',
+                  '0 0 0 0 rgba(99, 102, 241, 0)'
+                ]
+              }}
+              transition={{ 
+                duration: 2, 
+                repeat: Infinity,
+                ease: "easeOut"
+              }}
+            />
+          )}
           
-          {/* Edge accent */}
-          <div className="absolute right-0 top-2 bottom-2 w-0.5 bg-white/30 rounded-full"></div>
+          {/* Corner accent */}
+          <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+          <div className="absolute bottom-0 right-0 w-full h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
         </motion.button>
       </div>
 
-      {/* Mobile hint */}
+      {/* Enhanced mobile hint with animation */}
       <AnimatePresence>
         {!isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 sm:hidden"
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+            className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4 lg:hidden"
           >
-            <div className="bg-gray-900/90 text-white px-3 py-2 rounded-lg text-xs shadow-lg backdrop-blur-sm">
-              Social Links
-              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-b-gray-900/90"></div>
+            <div className="relative bg-gradient-to-r from-primary to-secondary p-[1px] rounded-xl shadow-2xl">
+              <div className="bg-bg-card/95 backdrop-blur-sm text-white px-4 py-2 rounded-xl">
+                <div className="flex items-center space-x-2">
+                  <Sparkles size={12} className="text-secondary" />
+                  <span className="text-xs font-semibold">Social Links</span>
+                </div>
+              </div>
+              {/* Arrow pointer */}
+              <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-primary"></div>
             </div>
           </motion.div>
         )}

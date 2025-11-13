@@ -12,6 +12,7 @@ import BackToTop from './components/BackToTop';
 import ParticleBackground from './components/ParticleBackground';
 import LoadingScreen from './components/LoadingScreen';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
+import SectionDivider from './components/SectionDivider';
 import './App.css';
 
 function App() {
@@ -22,10 +23,15 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <SectionDivider gradient />
         <About />
+        <SectionDivider />
         <Projects />
+        <SectionDivider />
         <Skills />
+        <SectionDivider />
         <Certifications />
+        <SectionDivider gradient />
         <Contact />
       </main>
       <Footer />

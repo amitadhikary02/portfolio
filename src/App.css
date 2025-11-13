@@ -7,10 +7,19 @@
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
+/* Two-line clamp fallback (used when @tailwindcss/line-clamp is not installed) */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 /* Custom animations */
 @keyframes float {
   0%, 100% {
@@ -89,6 +98,61 @@ textarea:focus-visible {
 }
 
 /* Smooth transitions for all interactive elements */
+a,
+button,
+input,
+textarea {
+  transition: all 0.3s ease;
+}
+
+/* Improved responsive text scaling */
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Better section spacing */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Improved card shadows */
+.shadow-card {
+  box-shadow: 0 4px 6px -1px rgba(99, 102, 241, 0.1), 
+              0 2px 4px -1px rgba(99, 102, 241, 0.06);
+}
+
+.shadow-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.15), 
+              0 10px 10px -5px rgba(99, 102, 241, 0.04);
+}
 button,
 a,
 input,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Download } from 'lucide-react';
+import { Menu, X, Download, Camera } from 'lucide-react';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -93,9 +93,9 @@ const Navbar: React.FC = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-bg-card/80 backdrop-blur-md border-b border-border-color shadow-lg' 
+          ? 'bg-bg-card/95 backdrop-blur-xl border-b border-primary/20 shadow-2xl shadow-primary/5' 
           : 'bg-transparent'
       }`}
     >
@@ -165,25 +165,40 @@ const Navbar: React.FC = () => {
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {navItems.map((item) => (
-                <button
+                <motion.button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`px-3 py-2 text-sm font-medium transition-all duration-300 relative ${
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`px-4 py-2 text-sm font-medium transition-all duration-300 relative rounded-lg ${
                     activeSection === item.id
-                      ? 'text-primary'
-                      : 'text-text-secondary hover:text-text-primary'
+                      ? 'text-primary bg-primary/10'
+                      : 'text-text-secondary hover:text-text-primary hover:bg-bg-secondary/50'
                   }`}
                 >
                   {item.label}
                   {activeSection === item.id && (
                     <motion.div
                       layoutId="navbar-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-secondary to-primary rounded-full"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                </button>
+                </motion.button>
               ))}
+              
+              {/* My Clicks Button */}
+              <motion.a
+                href="https://photos.amitadhikary.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-secondary hover:bg-secondary/90 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 flex items-center space-x-2 shadow-lg hover:shadow-xl"
+              >
+                <Camera size={16} />
+                <span>My Clicks</span>
+              </motion.a>
               
               {/* Resume Button */}
               <motion.a
@@ -219,11 +234,11 @@ const Navbar: React.FC = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-bg-card/95 backdrop-blur-md border-t border-border-color relative z-40"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden bg-bg-card/98 backdrop-blur-xl border-t border-primary/20 relative z-40 shadow-2xl shadow-primary/10"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item) => (
@@ -242,6 +257,20 @@ const Navbar: React.FC = () => {
                 </motion.button>
               ))}
               
+              {/* Mobile My Clicks Button */}
+              <motion.a
+                href="https://photos.amitadhikary.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ x: 10 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center space-x-2 w-full px-3 py-3 mt-3 bg-secondary hover:bg-secondary/90 text-white rounded-lg font-medium transition-all duration-300 touch-manipulation"
+              >
+                <Camera size={16} />
+                <span>My Clicks</span>
+              </motion.a>
+              
               {/* Mobile Resume Button */}
               <motion.a
                 href="/assets/images/Amit_Adhikary_resume.pdf"
@@ -251,7 +280,7 @@ const Navbar: React.FC = () => {
                 whileHover={{ x: 10 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center space-x-2 w-full px-3 py-3 mt-4 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium transition-all duration-300 touch-manipulation"
+                className="flex items-center space-x-2 w-full px-3 py-3 mt-2 bg-primary hover:bg-primary/90 text-white rounded-lg font-medium transition-all duration-300 touch-manipulation"
               >
                 <Download size={16} />
                 <span>Download Resume</span>

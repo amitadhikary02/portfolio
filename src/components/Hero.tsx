@@ -48,12 +48,12 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-0">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-16 md:pt-0">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-bg-primary via-bg-secondary to-bg-primary opacity-50" />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-8 sm:py-12">
+        <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -76,10 +76,10 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary leading-tight overflow-hidden"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-text-primary leading-tight overflow-hidden"
             >
               <span className="block">Amit</span>
-              <span className="block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-gradient">
                 Adhikary
               </span>
             </motion.h1>
@@ -89,11 +89,11 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.8 }}
-              className="h-10 sm:h-12 flex items-center justify-center lg:justify-start overflow-hidden"
+              className="h-12 sm:h-14 md:h-16 flex items-center justify-center lg:justify-start overflow-hidden"
             >
-              <span className="text-xl sm:text-2xl md:text-3xl font-semibold text-text-secondary truncate">
+              <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-text-secondary">
                 {displayText}
-                <span className="animate-pulse">|</span>
+                <span className="animate-pulse ml-1">|</span>
               </span>
             </motion.div>
 
@@ -114,25 +114,25 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-2"
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4"
             >
               <motion.button
                 onClick={() => scrollToSection('projects')}
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-primary hover:bg-primary/90 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl group w-full sm:w-auto"
+                className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white px-8 py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-2xl hover:shadow-primary/30 group w-full sm:w-auto"
               >
                 <span>View My Work</span>
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
               </motion.button>
 
               <motion.button
                 onClick={() => scrollToSection('contact')}
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
-                className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center space-x-2 group w-full sm:w-auto"
+                className="border-2 border-primary bg-primary/5 text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-xl font-semibold text-base sm:text-lg transition-all duration-300 flex items-center justify-center space-x-2 group w-full sm:w-auto backdrop-blur-sm"
               >
-                <Mail size={18} />
+                <Mail size={20} />
                 <span>Get In Touch</span>
               </motion.button>
             </motion.div>
