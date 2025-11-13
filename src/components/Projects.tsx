@@ -135,7 +135,7 @@ const Projects: React.FC = () => {
       description: "A comprehensive medical education consultancy website based in Ranaghat, West Bengal, India. The platform connects students with medical and pharmacy educational opportunities across India, offering expert career guidance and admission assistance with modern web technologies.",
       image: `${process.env.PUBLIC_URL}/assets/images/Projects/parthaeducare.png`,
       technologies: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design"],
-      githubUrl: "https://github.com/amit59684/ParthaEducare",
+      githubUrl: "https://github.com/amitadhikary02/ParthaEducare",
       liveUrl: "https://parthaeducare.com"
     },
     {
@@ -143,7 +143,7 @@ const Projects: React.FC = () => {
       description: "A comprehensive platform for college admissions and educational institution management built with the MERN stack. Features college listings, application management, user profiles, admin dashboard, and responsive design for seamless user experience.",
       image: `${process.env.PUBLIC_URL}/assets/images/Projects/admissionjunction.png`,
       technologies: ["MongoDB", "Express.js", "React", "Node.js"],
-      githubUrl: "https://github.com/amit59684/AdmissionJunction",
+      githubUrl: "https://github.com/amitadhikary02/AdmissionJunction",
       liveUrl: "https://admissionjunction.com"
     },
     {
@@ -151,7 +151,7 @@ const Projects: React.FC = () => {
       description: "Created an intelligent Sudoku puzzle solver using backtracking algorithm that efficiently solves puzzles of varying difficulty levels.",
       image: `${process.env.PUBLIC_URL}/assets/images/Projects/sudoku.png`,
       technologies: ["Python", "Backtracking", "Logic"],
-      githubUrl: "https://github.com/amit59684/sudoku_solver",
+      githubUrl: "https://github.com/amitadhikary02/sudoku_solver",
       liveUrl: "#"
     },
     {
@@ -159,7 +159,7 @@ const Projects: React.FC = () => {
       description: "Developed a sophisticated terminal-based application that solves complex mazes using various pathfinding algorithms including BFS, DFS, and A*.",
       image: `${process.env.PUBLIC_URL}/assets/images/Projects/maze.png`,
       technologies: ["Python", "Algorithms", "Data Structures"],
-      githubUrl: "https://github.com/amit59684/Terminal-Based-Maze-Solver",
+      githubUrl: "https://github.com/amitadhikary02/Terminal-Based-Maze-Solver",
       liveUrl: "#"
     }
   ];
@@ -262,7 +262,7 @@ const Projects: React.FC = () => {
           className="text-center mt-10 sm:mt-12"
         >
           <motion.a
-            href="https://github.com/amit59684"
+            href="https://github.com/amitadhikary02"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05, y: -2 }}

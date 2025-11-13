@@ -104,9 +104,10 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.6, delay: 1 }}
               className="text-base sm:text-lg text-text-secondary max-w-2xl leading-relaxed mx-auto lg:mx-0"
             >
-              Welcome to amitadhikary.com! I'm Amit Adhikary (amitadhikary), a passionate Full Stack Web Developer from India 
-              specializing in React, TypeScript, Python, Django, Node.js, and modern web technologies. 
-              I create robust, scalable solutions that power exceptional digital experiences.
+            <p> Welcome to amitadhikary.com!</p>
+            I'm Amit Adhikary, a Software Engineer and Full Stack Web Developer from India, skilled in React, TypeScript, Python, Django, Node.js, and modern web technologies.
+            I build scalable, high-performance applications with clean architecture and strong problem-solving skills.
+            Beyond development, I enjoy open source, coding challenges, and competitive programming, always exploring new ways to grow as an engineer.
             </motion.p>
 
             {/* Action Buttons */}

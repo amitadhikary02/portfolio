@@ -346,7 +346,7 @@ const SocialSidebar: React.FC = () => {
           >
             <div className="relative bg-gradient-to-r from-primary to-secondary p-[1px] rounded-xl shadow-2xl">
               <div className="bg-bg-card/95 backdrop-blur-sm text-white px-4 py-2 rounded-xl">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center justify-center2">
                   <Sparkles size={12} className="text-secondary" />
                   <span className="text-xs font-semibold">Social Links</span>
                 </div>

@@ -109,15 +109,16 @@ const Skills: React.FC = () => {
   const technicalSkills = [
     { name: "Python", level: 90, icon: `${process.env.PUBLIC_URL}/assets/images/TS/python.png` },
     { name: "JavaScript", level: 95, icon: `${process.env.PUBLIC_URL}/assets/images/TS/java-script.png` },
-    { name: "TypeScript", level: 85, icon: `${process.env.PUBLIC_URL}/assets/images/TS/programming.png` },
-    { name: "Java", level: 80, icon: `${process.env.PUBLIC_URL}/assets/images/TS/python.png` },
-    { name: "Data Structures & Algorithms", level: 85, icon: `${process.env.PUBLIC_URL}/assets/images/TS/programming.png` },
+    { name: "TypeScript", level: 85, icon: `${process.env.PUBLIC_URL}/assets/images/TS/typescript.png` },
+    { name: "Java", level: 80, icon: `${process.env.PUBLIC_URL}/assets/images/TS/java.png` },
+    { name: "Data Structures & Algorithms", level: 85, icon: `${process.env.PUBLIC_URL}/assets/images/TS/algorithm.png` },
     { name: "Django", level: 85, icon: `${process.env.PUBLIC_URL}/assets/images/TS/django (1).png` },
     { name: "MySQL", level: 80, icon: `${process.env.PUBLIC_URL}/assets/images/TS/mysql.png` },
     { name: "MongoDB", level: 75, icon: `${process.env.PUBLIC_URL}/assets/images/TS/database-storage.png` },
     { name: "HTML", level: 95, icon: `${process.env.PUBLIC_URL}/assets/images/TS/programming.png` },
     { name: "CSS", level: 88, icon: `${process.env.PUBLIC_URL}/assets/images/TS/coding.png` },
-    { name: "Django REST", level: 82, icon: `${process.env.PUBLIC_URL}/assets/images/TS/django.png` }
+    { name: "Django REST", level: 82, icon: `${process.env.PUBLIC_URL}/assets/images/TS/django.png` },
+    { name: "AIML", level: 75, icon: `${process.env.PUBLIC_URL}/assets/images/TS/ai.png` }
   ];
 
   const softSkills = [
@@ -285,7 +286,7 @@ const Skills: React.FC = () => {
                 Soft Skills
               </h3>
               
-              <div className="grid sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
+              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
                 {softSkills.map((skill, index) => (
                   <SoftSkillCard
                     key={skill.title}
@@ -296,6 +297,36 @@ const Skills: React.FC = () => {
                   />
                 ))}
               </div>
+
+              {/* Hobbies & Interests */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 1.2 }}
+                className="mt-6 pt-6 border-t border-border-color"
+              >
+                <h4 className="text-lg font-semibold text-text-primary mb-4 flex items-center">
+                  <Zap className="mr-2 text-primary" size={20} />
+                  Hobbies & Interests
+                </h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {[
+                    { icon: '📚', label: 'Reading Books' },
+                    { icon: '💻', label: 'Coding Challenges' },
+                    { icon: '🌱', label: 'Open Source' },
+                    { icon: '🎯', label: 'Competitive Programming' }
+                  ].map((hobby, index) => (
+                    <motion.div
+                      key={hobby.label}
+                      whileHover={{ scale: 1.05 }}
+                      className="bg-bg-secondary/50 rounded-xl p-3 text-center hover:bg-primary/10 transition-all duration-300 border border-border-color/50"
+                    >
+                      <div className="text-2xl mb-1">{hobby.icon}</div>
+                      <div className="text-xs text-text-secondary font-medium">{hobby.label}</div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
           </motion.div>
         </div>

@@ -11,7 +11,6 @@ import SocialSidebar from './components/SocialSidebar';
 import BackToTop from './components/BackToTop';
 import ParticleBackground from './components/ParticleBackground';
 import LoadingScreen from './components/LoadingScreen';
-import PWAInstallPrompt from './components/PWAInstallPrompt';
 import SectionDivider from './components/SectionDivider';
 import './App.css';
 
@@ -37,7 +36,6 @@ function App() {
       <Footer />
       <SocialSidebar />
       <BackToTop />
-      <PWAInstallPrompt />
     </div>
   );
 }
