@@ -76,12 +76,10 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-text-primary leading-tight overflow-hidden"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-text-primary leading-tight overflow-visible"
+
             >
-              <span className="block">Amit</span>
-              <span className="block bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-gradient">
-                Adhikary
-              </span>
+              <span className="inline-block whitespace-nowrap">Amit <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-gradient">Adhikary</span></span>
             </motion.h1>
 
             {/* Typing Effect */}
@@ -105,9 +103,9 @@ const Hero: React.FC = () => {
               className="text-base sm:text-lg text-text-secondary max-w-2xl leading-relaxed mx-auto lg:mx-0"
             >
             <p> Welcome to amitadhikary.com!</p>
-            I'm Amit Adhikary, a Software Engineer and Full Stack Web Developer from India, skilled in React, TypeScript, Python, Django, Node.js, and modern web technologies.
+            I'm Amit Adhikary, a Software Engineer and Full Stack Web Developer from India, skilled in React, TypeScript, Python, Django, Node.js, and modern technologies.
             I build scalable, high-performance applications with clean architecture and strong problem-solving skills.
-            Beyond development, I enjoy open source, coding challenges, and competitive programming, always exploring new ways to grow as an engineer.
+
             </motion.p>
 
             {/* Action Buttons */}
